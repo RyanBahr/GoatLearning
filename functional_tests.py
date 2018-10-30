@@ -7,8 +7,8 @@ class NewVisitorTest(unittest.TestCase):
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
 
-    def tearDown(self):
-        self.browser.quit()
+    #def tearDown(self):
+    #    self.browser.quit()
 
     def test_can_start_a_list_and_retreive_it_later(self):
         #Mike, as a 60-year-old man, has memory problems.
@@ -17,7 +17,7 @@ class NewVisitorTest(unittest.TestCase):
 
         #After seeing "To-Do" in the page header
         self.assertIn('To-Do', self.browser.title)
-        self.fail('Finish the test!')
+        #self.fail('Finish the test!')
         #He is invited to enter a to-do item straight away
 
         #He Types "Buy Marine Sniper Rifle into a text-box.
