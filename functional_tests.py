@@ -28,7 +28,7 @@ class NewVisitorTest(unittest.TestCase):
             'Enter a to-do item'
         )
         #He Types "Buy Marine Sniper Rifle into a text-box.
-        input.send_keys('Buy Marine Sniper Rifle')
+        inputbox.send_keys('Buy Marine Sniper Rifle')
         #When he hits enter, the page updates, and now the page lists:
         #"1: Buy Marine Sniper Rifle"
         inputbox.send_keys(Keys.ENTER)
@@ -36,7 +36,8 @@ class NewVisitorTest(unittest.TestCase):
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
         self.assertTrue(
-            any(row.text == '1: Buy Marine Sniper Rifle' for row in rows)
+            any(row.text == '1: Buy Marine Sniper Rifle' for row in rows),
+            "New to-do item did not appear in table"
         )
     #There is still a text book which invites Mike to add another itemself.
     #He enters: "Kill Tuco Salamanca with the Sniper Rifle."
