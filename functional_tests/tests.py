@@ -1,9 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
+from django.test import LiveServerTestCase
 import time
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -20,7 +20,8 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_list_and_retreive_it_later(self):
         #Mike, as a 60-year-old man, has memory problems.
         #So, he goes to a website to help him remember things.
-        self.browser.get('http://localhost:8000')
+        time.sleep(10)
+        self.browser.get(self.live_server_url)
 
         #After seeing "To-Do" in the page header
         self.assertIn('To-Do', self.browser.title)
@@ -60,5 +61,3 @@ class NewVisitorTest(unittest.TestCase):
 
     #Whenever Mike visits this site, the to-do list is still the sameself.
     #Satisfied, Mike drinks a Beerself.
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
