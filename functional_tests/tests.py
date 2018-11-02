@@ -58,9 +58,10 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
     #The page updates again, now showing both items on the list.
-        self.wait_for_row_in_list_table('1: Buy Marine Sniper Rifle')
+        #self.wait_for_row_in_list_table('1: Buy Marine Sniper Rifle')
         self.wait_for_row_in_list_table('2: Kill Tuco Salamanca with the Sniper Rifle.')
-
+        self.wait_for_row_in_list_table('1: Buy Marine Sniper Rifle')
+        
     def test_multiple_users_can_start_lists_at_different_urls(self):
         #Mike makes a new to-do list
         self.browser.get(self.live_server_url)
@@ -68,8 +69,6 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys('Buy Marine Sniper Rifle')
         inputbox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy Marine Sniper Rifle')
-
-
     #Concerned over losing his progress, Mike sees that the site has
         mike_list_url = self.browser.current_url
         self.assertRegex(mike_list_url, '/lists/.+')
@@ -82,9 +81,25 @@ class NewVisitorTest(LiveServerTestCase):
 
         #Francis visits the home page. There is no sign of Edith's lists
         self.browser.get(self.live_server_url)
-        page_text = self.browser.find_element_by_tag_name('body').row_text
+        page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy Marine Sniper Rifle', page_text)
         self.assertNotIn('Kill Tuco Salamanca with the Sniper Rifle', page_text)
+
+        #Francis starts a new list by entering a new item. He is less interesting than Mike
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys('Buy milk')
+        inputbox.send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table('1: Buy milk')
+
+        #Francis gets his OWN url
+        francis_list_url = self.browser.current_url
+        self.assertRegex(francis-list_url, '/lists/.+')
+        self.assertNotEqual(francis_list_url, edith_list_url)
+
+        #Again, NO trace of Mike's list. He'd get mad!
+        page_text = self.browser.find_element_by_tag_name('body').text
+        self.assertNotIn('Buy peacock feathers', page_text)
+        self.assertIn('Buy milk', page_text)
 
     #generated a custom URL for him and his list. There is some explanation
     #for this fact
