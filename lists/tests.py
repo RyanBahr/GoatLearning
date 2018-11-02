@@ -8,8 +8,9 @@ from lists.views import home_page
 
 class HomePageTest(TestCase):
 
+
     def test_root_url_resolves_to_home_page_view(self):
-        found = resolve('/')
+        found = resolve('/') #'/' is the root of the site.
         self.assertEqual(found.func, home_page)
 
     def test_home_page_returns_correct_html(self):
@@ -25,9 +26,25 @@ class HomePageTest(TestCase):
 
         response = home_page(request)
 
-        self.assertIn('A new list item', response.content.decode())
+        self.assertEqual(Item.objects.count(), 1)
+        new_item = Item.objects.first()
+        self.assertEqual(new_item.text, 'A new list item')
 
-class ItemMOdelTest(TestCase):
+        def test_home_page_redirects_after_POST(self):
+            request = HttpRequest()
+            request.method = 'POST'
+            request.POST['item_text'] = 'A new list item'
+
+            response = home_page(request)
+
+            self.assertEqual(resposne.status_code, 302)
+            self.assertEqual(response['location'], '/')
+
+    def test_only_saves_items_when_necessary(self):
+        self.client.get('/')
+        self.assertEqual(Item.objects.count(), 0)
+
+class ItemModelTest(TestCase):
 
     def test_saving_and_retrieving_items(self):
         first_item = Item()
