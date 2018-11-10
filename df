@@ -1,0 +1,948 @@
+warning: LF will be replaced by CRLF in geckodriver.log.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in lists/tests.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in superlists/urls.py.
+The file will have its original line endings in your working directory
+[1mdiff --git a/functional_tests/__pycache__/tests.cpython-37.pyc b/functional_tests/__pycache__/tests.cpython-37.pyc[m
+[1mindex aebbf0e..cfa94c2 100644[m
+Binary files a/functional_tests/__pycache__/tests.cpython-37.pyc and b/functional_tests/__pycache__/tests.cpython-37.pyc differ
+[1mdiff --git a/functional_tests/tests.py b/functional_tests/tests.py[m
+[1mindex 5fffd9d..986d426 100644[m
+[1m--- a/functional_tests/tests.py[m
+[1m+++ b/functional_tests/tests.py[m
+[36m@@ -58,9 +58,10 @@[m [mclass NewVisitorTest(LiveServerTestCase):[m
+         inputbox.send_keys(Keys.ENTER)[m
+         time.sleep(1)[m
+     #The page updates again, now showing both items on the list.[m
+[31m-        self.wait_for_row_in_list_table('1: Buy Marine Sniper Rifle')[m
+[32m+[m[32m        #self.wait_for_row_in_list_table('1: Buy Marine Sniper Rifle')[m
+         self.wait_for_row_in_list_table('2: Kill Tuco Salamanca with the Sniper Rifle.')[m
+[31m-[m
+[32m+[m[32m        self.wait_for_row_in_list_table('1: Buy Marine Sniper Rifle')[m
+[32m+[m[41m        [m
+     def test_multiple_users_can_start_lists_at_different_urls(self):[m
+         #Mike makes a new to-do list[m
+         self.browser.get(self.live_server_url)[m
+[36m@@ -68,8 +69,6 @@[m [mclass NewVisitorTest(LiveServerTestCase):[m
+         inputbox.send_keys('Buy Marine Sniper Rifle')[m
+         inputbox.send_keys(Keys.ENTER)[m
+         self.wait_for_row_in_list_table('1: Buy Marine Sniper Rifle')[m
+[31m-[m
+[31m-[m
+     #Concerned over losing his progress, Mike sees that the site has[m
+         mike_list_url = self.browser.current_url[m
+         self.assertRegex(mike_list_url, '/lists/.+')[m
+[36m@@ -82,10 +81,26 @@[m [mclass NewVisitorTest(LiveServerTestCase):[m
+ [m
+         #Francis visits the home page. There is no sign of Edith's lists[m
+         self.browser.get(self.live_server_url)[m
+[31m-        page_text = self.browser.find_element_by_tag_name('body').row_text[m
+[32m+[m[32m        page_text = self.browser.find_element_by_tag_name('body').text[m
+         self.assertNotIn('Buy Marine Sniper Rifle', page_text)[m
+         self.assertNotIn('Kill Tuco Salamanca with the Sniper Rifle', page_text)[m
+ [m
+[32m+[m[32m        #Francis starts a new list by entering a new item. He is less interesting than Mike[m
+[32m+[m[32m        inputbox = self.browser.find_element_by_id('id_new_item')[m
+[32m+[m[32m        inputbox.send_keys('Buy milk')[m
+[32m+[m[32m        inputbox.send_keys(Keys.ENTER)[m
+[32m+[m[32m        self.wait_for_row_in_list_table('1: Buy milk')[m
+[32m+[m
+[32m+[m[32m        #Francis gets his OWN url[m
+[32m+[m[32m        francis_list_url = self.browser.current_url[m
+[32m+[m[32m        self.assertRegex(francis-list_url, '/lists/.+')[m
+[32m+[m[32m        self.assertNotEqual(francis_list_url, edith_list_url)[m
+[32m+[m
+[32m+[m[32m        #Again, NO trace of Mike's list. He'd get mad![m
+[32m+[m[32m        page_text = self.browser.find_element_by_tag_name('body').text[m
+[32m+[m[32m        self.assertNotIn('Buy peacock feathers', page_text)[m
+[32m+[m[32m        self.assertIn('Buy milk', page_text)[m
+[32m+[m
+     #generated a custom URL for him and his list. There is some explanation[m
+     #for this fact[m
+ [m
+[1mdiff --git a/geckodriver.log b/geckodriver.log[m
+[1mindex 7b5fba1..195f4fd 100644[m
+[1m--- a/geckodriver.log[m
+[1m+++ b/geckodriver.log[m
+[36m@@ -1767,3 +1767,772 @@[m [mconsole.error: PushService:[m
+ [GP[m
+ ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+ [m
+[32m+[m[32m1541190404891	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.MWa18GgyEyKN"[m
+[32m+[m[32m1541190408719	Marionette	INFO	Listening on port 59163[m
+[32m+[m[32m1541190408755	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541190421620	Marionette	INFO	Stopped listening on port 59163[m
+[32m+[m[32m[Child 11536, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 11536, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc[Parent 8680, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 8680, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[GPU 11824, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541190426565	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.39AJWhHjbgfE"[m
+[32m+[m[32m1541190430164	Marionette	INFO	Listening on port 59207[m
+[32m+[m[32m1541190430404	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541190432029	Marionette	INFO	Stopped listening on port 59207[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 8952, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14948, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, [Parent 8952, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32mline 346[m
+[32m+[m[32m[Child 14948, Chrome_ChildThre[Child 12060, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1[Parent 8952, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32mJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  AbortError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  AbortError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 1476[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541190538936	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.rcK5SMixgMFZ"[m
+[32m+[m[32m1541190542786	Marionette	INFO	Listening on port 59258[m
+[32m+[m[32m1541190543296	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541190565080	Marionette	INFO	Stopped listening on port 59258[m
+[32m+[m[32m[Parent 12672, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 7544, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/[iParent 12672, Gecpc_channel_win.cc, line 346k[m
+[32m+[m[32mo_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 7100, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 7[Parent 12672, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14416, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU[m[41m [m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: (msgtype=0x4E0005,name=PImageBridge::Msg_WillClose) Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541190569780	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.6VLHT2UT6Q7p"[m
+[32m+[m[32m1541190573414	Marionette	INFO	Listening on port 59347[m
+[32m+[m[32m1541190573648	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541190584662	Marionette	INFO	Stopped listening on port 59347[m
+[32m+[m[32m[Parent 6964, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14364, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child [Parent 6964, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 2672, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 2672, Chrome_ChildThr[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 29[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: (msgtype=0x4E0005,name=PImageBridge::Msg_WillClose) Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541190825186	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.fV8KSixQYxk7"[m
+[32m+[m[32m1541190829027	Marionette	INFO	Listening on port 59393[m
+[32m+[m[32m1541190829085	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541190850874	Marionette	INFO	Stopped listening on port 59393[m
+[32m+[m[32m[Child 12060, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 12060, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 7072, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14780, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541190855802	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.AyN9ON2MmtgF"[m
+[32m+[m[32m1541190860119	Marionette	INFO	Listening on port 59432[m
+[32m+[m[32m1541190860168	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541190871206	Marionette	INFO	Stopped listening on port 59432[m
+[32m+[m[32m[Child 13260, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 13[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 91541190915037	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.y8HCiXjGWcOx"[m
+[32m+[m[32m1541190918866	Marionette	INFO	Listening on port 59470[m
+[32m+[m[32m1541190918906	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541190940761	Marionette	INFO	Stopped listening on port 59470[m
+[32m+[m[32m[Child 2280, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 2280, Chrome_ChildThread] WAR[Parent 4064, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 824, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 8[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 2968, 1541190945618	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.tbSQUPhQdYly"[m
+[32m+[m[32m1541190949491	Marionette	INFO	Listening on port 59511[m
+[32m+[m[32m1541190949980	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541190961062	Marionette	INFO	Stopped listening on port 59511[m
+[32m+[m[32m[Child 11948, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child[Child 11448, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541191122007	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.QIDJluum0u97"[m
+[32m+[m[32m1541191126113	Marionette	INFO	Listening on port 59557[m
+[32m+[m[32m1541191126413	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191137049	Marionette	INFO	Stopped listening on port 59557[m
+[32m+[m[32m[Child 12520, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 12[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541191142021	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.Eeorit98EJTH"[m
+[32m+[m[32m1541191145610	Marionette	INFO	Listening on port 59589[m
+[32m+[m[32m1541191145912	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191146305	Marionette	INFO	Stopped listening on port 59589[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Child 15188, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 9116, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 9116, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32mJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  UnknownError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  UnknownError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 15344, 1541191246287	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.qPzJHdjmoq5t"[m
+[32m+[m[32m1541191249875	Marionette	INFO	Listening on port 59617[m
+[32m+[m[32m1541191250263	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191260720	Marionette	INFO	Stopped listening on port 59617[m
+[32m+[m[32m[Child 10524, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 10524, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14216, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1[Parent 3404, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 6964, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 696[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 7784, Chro[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541191265752	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.P43FXKZoYpLx"[m
+[32m+[m[32m1541191269708	Marionette	INFO	Listening on port 59650[m
+[32m+[m[32m1541191270109	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191270611	Marionette	INFO	Stopped listening on port 59650[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 12260, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 8668, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 86[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[Child 204, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 204, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 12260, Gecko_IOThread] WARNING: file z:/build/build/src/ipc/chromium/src/base/process_util_win.cc, line 188[m
+[32m+[m[32m[Child 2556, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 2556JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  AbortError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  AbortError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 6364, Chrome_ChildThread][m[41m [m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541191352318	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.C5WDtYWaXngN"[m
+[32m+[m[32m1541191356187	Marionette	INFO	Listening on port 59681[m
+[32m+[m[32m1541191356678	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191378439	Marionette	INFO	Stopped listening on port 59681[m
+[32m+[m[32m[Child 11940, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 11940, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 12496, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 1071541191383113	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.BPOxX0R7Bopq"[m
+[32m+[m[32m1541191386933	Marionette	INFO	Listening on port 59723[m
+[32m+[m[32m1541191386968	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191397667	Marionette	INFO	Stopped listening on port 59723[m
+[32m+[m[32m[Child 2436, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 2436, Chrome_C[Child 6248, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 6248, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 2592, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 9[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541191497575	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.9bYSxAHv8FRl"[m
+[32m+[m[32m1541191501308	Marionette	INFO	Listening on port 59760[m
+[32m+[m[32m1541191501430	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191524327	Marionette	INFO	Stopped listening on port 59760[m
+[32m+[m[32m[Parent 12592, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1984, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1984, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromiu[Parent 12592, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 13248, C1541191529132	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.nJRNPO930Z38"[m
+[32m+[m[32m1541191533167	Marionette	INFO	Listening on port 59802[m
+[32m+[m[32m1541191533489	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191535237	Marionette	INFO	Stopped listening on port 59802[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Child 11720, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 14472, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 13908, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 10992,1541191540839	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.HnpDjf7iBNtz"[m
+[32m+[m[32m1541191544680	Marionette	INFO	Listening on port 59835[m
+[32m+[m[32m1541191545177	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191545637	Marionette	INFO	Stopped listening on port 59835[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 10936, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 2092, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[Child 6296, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/ch[m
+[32m+[m[32mrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 6296[Parent 10936, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 4008, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 4JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  UnknownError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  UnknownError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GP[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541191716229	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.MFJSyOgwKVQI"[m
+[32m+[m[32m1541191720549	Marionette	INFO	Listening on port 59868[m
+[32m+[m[32m1541191720600	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191743576	Marionette	INFO	Stopped listening on port 59868[m
+[32m+[m[32m[Child 14028, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/[cCommon/ipc_channel_win.cc, line 346hild 4064, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m
+[32m+[m[32m[Child 4064, Chrome_ChildThread] WARNING: pipe error: 109: file[Parent 13632, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1652, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 16[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 3[Parent 13632, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513[m
+[32m+[m[32m1541191748573	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.7MKAqSSzaXOK"[m
+[32m+[m[32m[GFX1-]: ClientLayerManager::BeginTransaction with IPC channel down. GPU process may have died.[m
+[32m+[m[32m1541191752118	Marionette	INFO	Listening on port 59909[m
+[32m+[m[32mJavaScript error: jar:file:///C:/Program%20Files/Mozilla%20Firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 65: NS_ERROR_XPC_GS_RETURNED_FAILURE: Component returned failure code: 0x80570016 (NS_ERROR_XPC_GS_RETURNED_FAILURE) [nsIJSCID.getService][m
+[32m+[m[32mJavaScript error: jar:file:///C:/Program%20Files/Mozilla%20Firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 65: NS_ERROR_XPC_GS_RETURNED_FAILURE: Component returned failure code: 0x80570016 (NS_ERROR_XPC_GS_RETURNED_FAILURE) [nsIJSCID.getService][m
+[32m+[m[32m1541191752442	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191753998	Marionette	INFO	Stopped listening on port 59909[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Child 12672, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1092, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child [Parent 14144, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 7156, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 7156, ChroJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m[32m1541191759664	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.8SyFRmnBymYI"[m
+[32m+[m[32m1541191763476	Marionette	INFO	Listening on port 59942[m
+[32m+[m[32m1541191763523	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541191763985	Marionette	INFO	Stopped listening on port 59942[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 7748, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 7996, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 7996, Chrome_ChildThread] WARNING: pipe [Child 704, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 704, Chrome_ChildThread] WARNING: pip[Child 3812, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 3812, Chrome_ChildThread]JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  UnknownError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  UnknownError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 3992[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541192296728	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.MGZfa7DyOCdh"[m
+[32m+[m[32m1541192301185	Marionette	INFO	Listening on port 59988[m
+[32m+[m[32m1541192301232	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192323942	Marionette	INFO	Stopped listening on port 59988[m
+[32m+[m[32m[Child 9524, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 9524, Chrome_ChildThread] WAR[Child 1992, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1992, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/[Parent 7000, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 8380, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child[m[41m [m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 4568[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541192328749	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.JnH2cmoyBgph"[m
+[32m+[m[32m1541192332275	Marionette	INFO	Listening on port 60034[m
+[32m+[m[32m1541192332617	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192334669	Marionette	INFO	Stopped listening on port 60034[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 6552, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 8936, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child[Parent 6552, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1420, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14[Child 7584, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 758JavaScript error: resource://gre/modules/Sqlite.jsm, line 841: Error: Connection is not open.[m
+[32m+[m[32mJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  AbortError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  AbortError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU [Parent 6552, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513[m
+[32m+[m[32m1541192340555	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.WZ8BDD1v9KJH"[m
+[32m+[m[32m[GFX1-]: ClientLayerManager::BeginTransaction with IPC channel down. GPU process may have died.[m
+[32m+[m[32m1541192343965	Marionette	INFO	Listening on port 60065[m
+[32m+[m[32m1541192344408	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192344857	Marionette	INFO	Stopped listening on port 60065[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Child 7144, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[Parent 8088, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/c[m
+[32m+[m[32mhromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 3692, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 3692, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 8088, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 8456, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 8456,JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  AbortError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  AbortError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 148[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541192379118	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.GnhUZHStGQJF"[m
+[32m+[m[32m1541192383297	Marionette	INFO	Listening on port 60094[m
+[32m+[m[32m1541192383467	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192406444	Marionette	INFO	Stopped listening on port 60094[m
+[32m+[m[32m[Child 1456, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1456, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 9152, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 6036, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 60[Parent 9152, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1936, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1936, Chrome_ChildThread] WARNING:[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 118[Parent 9152, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513[m
+[32m+[m[32m1541192411127	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.YMHGuhtg0Mfz"[m
+[32m+[m[32m1541192414720	Marionette	INFO	Listening on port 60147[m
+[32m+[m[32m1541192414964	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192416255	Marionette	INFO	Stopped listening on port 60147[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Child 11256, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 11256, CJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  AbortError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  AbortError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 6484, 1541192422007	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.5WXkevkcsDo9"[m
+[32m+[m[32m1541192425528	Marionette	INFO	Listening on port 60179[m
+[32m+[m[32m1541192425860	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192426380	Marionette	INFO	Stopped listening on port 60179[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 12516, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 12516, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14812, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14812, Chrome_ChildThread] WARNING: p[Parent 12516, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 2084, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 2084JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  AbortError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  AbortError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 3040[Parent 12516, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513[m
+[32m+[m[32m1541192531138	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.ywubZnw9tbUA"[m
+[32m+[m[32m1541192534742	Marionette	INFO	Listening on port 60209[m
+[32m+[m[32m1541192534997	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192558027	Marionette	INFO	Stopped listening on port 60209[m
+[32m+[m[32m[Child 15320, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 15320, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 13416, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 13416, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[GPU 9292,1541192563236	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.8CYjIU6DXuc5"[m
+[32m+[m[32m1541192566656	Marionette	INFO	Listening on port 60253[m
+[32m+[m[32m1541192567088	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192568357	Marionette	INFO	Stopped listening on port 60253[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 8000, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 9244, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 9244, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 8000, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 15232, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 15232, Chrome_Ch[Parent 8000, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32mJavaScript error: resource://gre/modules/Sqlite.jsm, line 841: Error: Connection is not open.[m
+[32m+[m[32mJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  AbortError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  AbortError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 741541192574209	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.jIavjkciM0Kf"[m
+[32m+[m[32m1541192577807	Marionette	INFO	Listening on port 60286[m
+[32m+[m[32m1541192578056	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192578524	Marionette	INFO	Stopped listening on port 60286[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 13884, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 15196, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 15196, Chrome_ChildTJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  UnknownError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  UnknownError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU [Parent 13884, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513[m
+[32m+[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541192634700	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.d0E5mFWf9bEm"[m
+[32m+[m[32m1541192639020	Marionette	INFO	Listening on port 60318[m
+[32m+[m[32m1541192639085	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192662019	Marionette	INFO	Stopped listening on port 60318[m
+[32m+[m[32m[Child 784, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 7[Child 9948, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 9948, Chrome_ChildThread] WARNING: pipe error: 109: file [Parent 10972, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 6984, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 6984, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.c[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 14640, Chrome_ChildThread] WARNING: p[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541192666901	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.DDW28aSgOZqt"[m
+[32m+[m[32m1541192670435	Marionette	INFO	Listening on port 60364[m
+[32m+[m[32m1541192670745	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192671795	Marionette	INFO	Stopped listening on port 60364[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Child 7116, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ip[Child 11796, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346c_channel_win.cc, line 346[m
+[32m+[m
+[32m+[m[32m[Child 1[Child 71[Parent 2632, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32mJavaScript error: resource://gre/modules/Sqlite.jsm, line 841: Error: Connection is not open.[m
+[32m+[m[32mJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU[m[41m [m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541192678084	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.ReQpVYsu8vRD"[m
+[32m+[m[32m1541192681587	Marionette	INFO	Listening on port 60398[m
+[32m+[m[32m1541192681929	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192682433	Marionette	INFO	Stopped listening on port 60398[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 1404, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 7288, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 72console.error: (new Error("Connection closed before committing the transaction.", "resource://gre/modules/Sqlite.jsm", 632))[m
+[32m+[m[32mJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  UnknownError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  UnknownError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU[Parent 1404, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513[m
+[32m+[m[32m1541192839676	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.vBlYI5UADNoY"[m
+[32m+[m[32m1541192843527	Marionette	INFO	Listening on port 60431[m
+[32m+[m[32m1541192844015	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192866923	Marionette	INFO	Stopped listening on port 60431[m
+[32m+[m[32m[Parent 7720, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 7720, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 11452, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 11452, Chrome_ChildThread] WARNING: pipe e[Parent 7720, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 8932,[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541192871808	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.nZmLmsYvYESD"[m
+[32m+[m[32m1541192875752	Marionette	INFO	Listening on port 60476[m
+[32m+[m[32m1541192876172	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192877869	Marionette	INFO	Stopped listening on port 60476[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 244, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 244, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14428, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, li[Child 4256, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346n[m
+[32m+[m[32me 346[m
+[32m+[m[32m[Child 4256, Chrome_ChildThread] WARNING: pipe error: 109: [Child 14428, Chrome_ChildThJavaScript error: jar:file:///C:/Program%20Files/Mozilla%20Firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 597: TypeError: this.tablesData[table] is undefined[m
+[32m+[m[32m[Parent 244, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14796, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 1430[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541192883559	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.6sMiPe3QtLT7"[m
+[32m+[m[32m1541192886822	Marionette	INFO	Listening on port 60514[m
+[32m+[m[32m1541192886903	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541192887356	Marionette	INFO	Stopped listening on port 60514[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Child 14880, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14880, Chrome_ChildThre[Child 14688, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 146JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  UnknownError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  UnknownError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 1[Parent 11356, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513[m
+[32m+[m[32m1541193068324	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.ESzx7ag0sFiK"[m
+[32m+[m[32m1541193071919	Marionette	INFO	Listening on port 60562[m
+[32m+[m[32m1541193072177	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541193085000	Marionette	INFO	Stopped listening on port 60562[m
+[32m+[m[32m[Parent 10648, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 10648, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 13024, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 13024, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Parent 10648, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 3888,[Parent 10648, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513[m
+[32m+[m[32m1541193089850	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.lD0pza21sr4p"[m
+[32m+[m[32m1541193093289	Marionette	INFO	Listening on port 60603[m
+[32m+[m[32m1541193093689	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541193095448	Marionette	INFO	Stopped listening on port 60603[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Child 7260, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 7[Parent 4952, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 11032, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 11JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  AbortError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  AbortError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 6884, Ch[m
+[32m+[m[32m###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv[m
+[32m+[m
+[32m+[m[32m1541193101275	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.BJWzYQLPJCUE"[m
+[32m+[m[32m1541193104714	Marionette	INFO	Listening on port 60635[m
+[32m+[m[32m1541193105131	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541193105574	Marionette	INFO	Stopped listening on port 60635[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Parent 6412, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 12800, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 12800, Chrome_Chi[Parent 6412, Gecko_IOThread] WARNING: file z:/build/build/src/ipc/chromium/src/base/process_util_win.cc, line 188[m
+[32m+[m[32mJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  UnknownError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  UnknownError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 3041541194824706	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.OmCupmwhnm9R"[m
+[32m+[m[32m1541194831143	Marionette	INFO	Listening on port 60788[m
+[32m+[m[32m1541194831386	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541194844178	Marionette	INFO	Stopped listening on port 60788[m
+[32m+[m[32m[Child 13892, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[Child 5388, Chrome_ChildThread] WARNING: p[m
+[32m+[m[32mipe erro[Child 13892, Chrome_Childr: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child[Parent 11504, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 588, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 588, C[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU1541194848974	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.sREd5vmpuA1Q"[m
+[32m+[m[32m1541194852661	Marionette	INFO	Listening on port 60832[m
+[32m+[m[32m1541194852825	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541194854557	Marionette	INFO	Stopped listening on port 60832[m
+[32m+[m[32mJavaScript error: resource://activity-stream/lib/ActivityStreamPrefs.jsm, line 29: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIPrefBranch.removeObserver][m
+[32m+[m[32m[Child 76, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 76, Chrome_[Parent 5688, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 11208, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1[Parent 5688, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32mJavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  clearOriginData: Error clearing origin data:[m
+[32m+[m[32m  AbortError[m
+[32m+[m[32mconsole.error: PushService:[m[41m [m
+[32m+[m[32m  stateChangeProcessEnqueue: Error transitioning state[m
+[32m+[m[32m  AbortError[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Parent][DispatchAsyncMessage] Error: PBackgroundIDBFactory::Msg_PBackgroundIDBFactoryRequestConstructor Value error: message was deserialized, but contained an illegal value[m
+[32m+[m
+[32m+[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU 131[Parent 5688, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513[m
+[32m+[m[32m1541194860406	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Ryan\\AppData\\Local\\Temp\\rust_mozprofile.CD5RJX2nK8zt"[m
+[32m+[m[32m1541194863915	Marionette	INFO	Listening on port 60863[m
+[32m+[m[32m1541194864259	Marionette	WARN	TLS certificate errors will be ignored for this session[m
+[32m+[m[32m1541194874825	Marionette	INFO	Stopped listening on port 60863[m
+[32m+[m[32m[Parent 15284, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 10260, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 10260, C[Child 14188, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 14[Parent 15284, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 11356, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[m
+[32m+[m[32m[Child 1135[m
+[32m+[m[32m###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost[m
+[32m+[m
+[32m+[m[32m[GPU[m[41m [m
+\ No newline at end of file[m
+[1mdiff --git a/lists/__pycache__/tests.cpython-37.pyc b/lists/__pycache__/tests.cpython-37.pyc[m
+[1mindex 65c4457..ac32e44 100644[m
+Binary files a/lists/__pycache__/tests.cpython-37.pyc and b/lists/__pycache__/tests.cpython-37.pyc differ
+[1mdiff --git a/lists/__pycache__/views.cpython-37.pyc b/lists/__pycache__/views.cpython-37.pyc[m
+[1mindex 3887131..32141c6 100644[m
+Binary files a/lists/__pycache__/views.cpython-37.pyc and b/lists/__pycache__/views.cpython-37.pyc differ
+[1mdiff --git a/lists/templates/home.html b/lists/templates/home.html[m
+[1mindex 4a2fb0e..78f98fe 100644[m
+[1m--- a/lists/templates/home.html[m
+[1m+++ b/lists/templates/home.html[m
+[36m@@ -3,8 +3,8 @@[m
+         <title>To-Do lists</title>[m
+     </head>[m
+     <body>[m
+[31m-        <h1>You To-Do list</h1>[m
+[31m-        <form method ="POST">[m
+[32m+[m[32m        <h1>Start a new To-Do list</h1>[m
+[32m+[m[32m        <form method ="POST" action="/">[m
+             <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />[m
+             {% csrf_token %}[m
+         </form>[m
+[1mdiff --git a/lists/tests.py b/lists/tests.py[m
+[1mindex b12c0fa..7f5a7e1 100644[m
+[1m--- a/lists/tests.py[m
+[1m+++ b/lists/tests.py[m
+[36m@@ -30,15 +30,15 @@[m [mclass HomePageTest(TestCase):[m
+         new_item = Item.objects.first()[m
+         self.assertEqual(new_item.text, 'A new list item')[m
+ [m
+[31m-        def test_home_page_redirects_after_POST(self):[m
+[31m-            request = HttpRequest()[m
+[31m-            request.method = 'POST'[m
+[31m-            request.POST['item_text'] = 'A new list item'[m
+[32m+[m[32m    def test_home_page_redirects_after_POST(self):[m
+[32m+[m[32m        request = HttpRequest()[m
+[32m+[m[32m        request.method = 'POST'[m
+[32m+[m[32m        request.POST['item_text'] = 'A new list item'[m
+ [m
+[31m-            response = home_page(request)[m
+[32m+[m[32m        response = home_page(request)[m
+ [m
+[31m-            self.assertEqual(resposne.status_code, 302)[m
+[31m-            self.assertEqual(response['location'], '/')[m
+[32m+[m[32m        self.assertEqual(response.status_code, 302)[m
+[32m+[m[32m        self.assertEqual(response['location'], '/lists/the-only-list-in-the-world/')[m
+ [m
+     def test_only_saves_items_when_necessary(self):[m
+         self.client.get('/')[m
+[36m@@ -62,3 +62,18 @@[m [mclass ItemModelTest(TestCase):[m
+         second_saved_item = saved_items[1][m
+         self.assertEqual(first_saved_item.text, 'The first (ever) list item')[m
+         self.assertEqual(second_saved_item.text, 'Item the second')[m
+[32m+[m
+[32m+[m[32mclass ListViewTest(TestCase):[m
+[32m+[m
+[32m+[m[32m    def test_uses_list_template(self):[m
+[32m+[m[32m        response = self.client.get('/lists/the-only-list-in-the-world/')[m
+[32m+[m[32m        self.assertTemplateUsed(response, 'list.html')[m
+[32m+[m
+[32m+[m[32m    def test_displays_all_items(self):[m
+[32m+[m[32m        Item.objects.create(text='itemey 1')[m
+[32m+[m[32m        Item.objects.create(text='itemey 2')[m
+[32m+[m
+[32m+[m[32m        response = self.client.get('/lists/the-only-list-in-the-world/')[m
+[32m+[m
+[32m+[m[32m        self.assertContains(response, 'itemey 1')[m
+[32m+[m[32m        self.assertContains(response, 'itemey 2')[m
+[1mdiff --git a/lists/views.py b/lists/views.py[m
+[1mindex e33ff5f..3e02b6d 100644[m
+[1m--- a/lists/views.py[m
+[1m+++ b/lists/views.py[m
+[36m@@ -1,10 +1,12 @@[m
+ from django.shortcuts import redirect, render[m
+ from lists.models import Item[m
+ [m
+[32m+[m[32mdef view_list(request):[m
+[32m+[m[32m    items = Item.objects.all()[m
+[32m+[m[32m    return render(request, 'list.html', {'items': items})[m
+[32m+[m
+ def home_page(request):[m
+     if request.method == 'POST':[m
+         Item.objects.create(text=request.POST['item_text'])[m
+[31m-        return redirect('/')[m
+[31m-[m
+[31m-    items = Item.objects.all()[m
+[31m-    return render(request, 'home.html', {'items': items})[m
+[32m+[m[32m        return redirect('/lists/the-only-list-in-the-world/')[m
+[32m+[m[32m    return render(request, 'home.html')[m
+[1mdiff --git a/superlists/__pycache__/urls.cpython-37.pyc b/superlists/__pycache__/urls.cpython-37.pyc[m
+[1mindex 0e0ce9c..8004319 100644[m
+Binary files a/superlists/__pycache__/urls.cpython-37.pyc and b/superlists/__pycache__/urls.cpython-37.pyc differ
+[1mdiff --git a/superlists/urls.py b/superlists/urls.py[m
+[1mindex 242f1b2..eb4eb25 100644[m
+[1m--- a/superlists/urls.py[m
+[1m+++ b/superlists/urls.py[m
+[36m@@ -1,9 +1,11 @@[m
+ from django.conf.urls import include, url, patterns[m
+ from django.contrib import admin[m
+[32m+[m[32mfrom lists import views[m
+ [m
+ urlpatterns = patterns('',[m
+     # Examples:[m
+      url(r'^$', 'lists.views.home_page', name='home'),[m
+[32m+[m[32m     url(r'^lists/the-only-list-in-the-world/$', views.view_list, name='view_list'),[m
+     # url(r'^blog/', include('blog.urls')),[m
+     #url(r'^admin/', include(admin.site.urls)),[m
+ )[m

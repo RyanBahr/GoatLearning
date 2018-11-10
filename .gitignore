@@ -1,9 +1,6 @@
 db.sqlite3
-*.pyc
+geckodriver.log
+virtualenv
+virtualenv1
 __pycache__
-lists/__pycache__/tests.cpython-37.pyc
 *.pyc
-lists/__pycache__/tests.cpython-37.pyc
-lists/__pycache__/views.cpython-37.pyc
-functional_tests/__pycache__/tests.cpython-37.pyc
-superlists/__pycache__/urls.cpython-37.pyc
