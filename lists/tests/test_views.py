@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from lists.models import Item, List
+from lists.forms import ItemForm
 
 
 class ListAndItemModelsTest(TestCase):
@@ -45,3 +46,13 @@ class ListAndItemModelsTest(TestCase):
     def test_get_absolute_url(self):
         list_ = List.objects.create()
         self.assertEqual(list_.get_absolute_url(), f'/lists/{list_.id}/')
+
+
+
+class HomePageTest(TestCase):
+    def test_uses_home_template(self):
+        pass
+
+    def test_home_page_uses_item_form(self):
+        response = self.client.get('/')
+        self.assertIsInstance(response.context['form'], ItemForm)
