@@ -8,6 +8,16 @@ class List(models.Model):
         return reverse('view_list', args=[self.id])
 
 
+    @property
+    def name(self):
+        return self.item_set.first().text
+
+
+    @staticmethod
+    def create_new(first_item_text, owner=None):
+        list_ = List.objects.create(owner=owner)
+        Item.objects.create(text=first_item_text, list=list_)
+        return list_
 
 
 class Item(models.Model):

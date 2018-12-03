@@ -1,6 +1,11 @@
 import random
 from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run, prefix
+
+
+# env.hosts = ['elspeth@ubuntu-s-lvcpu-1gb-sfo2-01']
+# env.passwords = {'elspeth@ubuntu-s-lvcpu-1gb-sfo2-01':'shadow'}
+
 # import logging
 #
 # logging.basicConfig(level=logging.DEBUG)
