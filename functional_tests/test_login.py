@@ -13,9 +13,10 @@ class LoginTest(FunctionalTest):
         #Edith goes to the awesome superlists site
         #and notices a "Log in" section in the navbar for the first time
         #It's telling her to enter her email address, so she does
+
         self.browser.get(self.live_server_url)
-        self.browser.find_element_by_name('email').send_keys(TEST_EMAIL)
-        self.browser.find_element_by_name('email').send_keys(Keys.ENTER)
+        self.browser.find_element_by_name("email").send_keys(TEST_EMAIL)
+        self.browser.find_element_by_name("email").send_keys(Keys.ENTER)
 
         #A message appears telling her an email has been dispatched to her address
         self.wait_for(lambda: self.assertIn(
@@ -26,10 +27,6 @@ class LoginTest(FunctionalTest):
         #She checks the email and finds a message
         email = mail.outbox[0]
         self.assertIn(TEST_EMAIL, email.to)
-        self.assertEqual(email.subject, SUBJECT)
-
-        #It has a url link in it
-        self.assertIn('Use this link to log in', email.body)
         self.assertEqual(email.subject, SUBJECT)
 
         #it has a url link in it
