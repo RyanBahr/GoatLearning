@@ -6,9 +6,9 @@ from fabric.api import cd, env, local, run, prefix
 # env.hosts = ['elspeth@ubuntu-s-lvcpu-1gb-sfo2-01']
 # env.passwords = {'elspeth@ubuntu-s-lvcpu-1gb-sfo2-01':'shadow'}
 
-# import logging
-#
-# logging.basicConfig(level=logging.DEBUG)
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 REPO_URL = 'https://github.com/RyanBahr/GoatLearning'
