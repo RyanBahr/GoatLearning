@@ -1,10 +1,14 @@
 import random
+import os
 from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run, prefix
 
 
 # env.hosts = ['elspeth@ubuntu-s-lvcpu-1gb-sfo2-01']
 # env.passwords = {'elspeth@ubuntu-s-lvcpu-1gb-sfo2-01':'shadow'}
+env.key_filename = "C:/Users/Ryan/Scripts/Goat/superlists/serverinfo/privatekey.ppk"
+
+
 
 import logging
 
@@ -49,6 +53,8 @@ def _create_or_update_dotenv():
             'abcdefghijklmnopqrstuvwxyz0123456789', k=50
         ))
         append('.env', f'DJANGO_SECRET_KEY={new_secret}')
+    email_password = os.environ['EMAIL_PASSWORD']
+    append('.env', f'EMAIL_PASSWORD={email_password}')
 
 
 def _update_static_files():
