@@ -11,7 +11,7 @@ def _get_manage_dot_py(host):
 def reset_database(host):
 #     run(f'source ~/sites/{host}/virtualenv/bin/activate')
     manage_dot_py = _get_manage_dot_py(host)
-    with settings(host_string=f'elspeth@{host}'):
+    with settings(host_string=f'elspeth@{host}'), prefix(workon virtualenv):
         run(f'{manage_dot_py} flush --noinput')
 
 
