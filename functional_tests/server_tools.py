@@ -5,7 +5,7 @@ from fabric.context_managers import settings, shell_env, prefix
 #     run(f'source ~/sites/{host}/virtualenv/bin/activate')
 
 def _get_manage_dot_py(host):
-    return f'~/sites/{host}/virtualenv/bin/python ~/sites/{host}/manage.py'
+    return f'~/sites/{host}/virtualenv/bin/python3.6 ~/sites/{host}/manage.py'
 
 
 def reset_database(host):
