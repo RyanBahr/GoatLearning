@@ -9,12 +9,14 @@ def _get_manage_dot_py(host):
 
 
 def reset_database(host):
+    run(f'source ~/sites/{host}/virtualenv/bin/activate')
     manage_dot_py = _get_manage_dot_py(host)
     with settings(host_string=f'elspeth@{host}'):
         run(f'{manage_dot_py} flush --noinput')
 
 
 def _get_server_env_vars(host):
+    run(f'source ~/sites/{host}/virtualenv/bin/activate')
     env_lines = run(f'cat ~/sites/{host}/.env').splitlines()
     return dict(l.split('=') for l in env_lines if l)
 
